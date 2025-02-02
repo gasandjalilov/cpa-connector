@@ -6,15 +6,19 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uz.ucell.cpa.connector.dto.SubscriptionActionDTO;
 import uz.ucell.cpa.connector.dto.SubscriptionDTO;
+import uz.ucell.cpa.connector.model.UserSubscription;
+import uz.ucell.cpa.connector.repository.UserSubscriptionRepository;
 import uz.ucell.cpa.connector.service.SubscriptionService;
 
 @Service
 @RequiredArgsConstructor
 public class SubscriptionServiceImpl implements SubscriptionService {
 
+    private final UserSubscriptionRepository userSubscriptionRepository;
+
     @Override
-    public Flux<SubscriptionDTO> getSubscriptions(String msisdn) {
-        return null;
+    public Flux<UserSubscription> getSubscriptions(String msisdn) {
+        return userSubscriptionRepository.findAllByMsisdn(msisdn);
     }
 
     @Override

@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uz.ucell.cpa.connector.dto.SubscriptionActionDTO;
 import uz.ucell.cpa.connector.dto.SubscriptionDTO;
+import uz.ucell.cpa.connector.model.UserSubscription;
 import uz.ucell.cpa.connector.service.SubscriptionService;
 
 @RestController
@@ -16,7 +17,7 @@ public class CampaignController {
     private final SubscriptionService subscriptionService;
 
     @GetMapping("/subscription/{msisdn}")
-    public Flux<SubscriptionDTO> getSubscription(@PathVariable String msisdn) {
+    public Flux<UserSubscription> getSubscription(@PathVariable String msisdn) {
         return subscriptionService.getSubscriptions(msisdn);
     }
 

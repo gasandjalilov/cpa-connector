@@ -1,1 +1,10 @@
-spring.application.name=cpa-connector
+spring:
+  cassandra:
+    contact-points: 10.7.83.25:9042
+    keyspace-name: vasp
+    password: password
+    username: cassandra
+    local-datacenter: dc1
+
+  application:
+    name: CPA-Connector

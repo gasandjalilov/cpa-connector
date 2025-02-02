@@ -5,10 +5,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uz.ucell.cpa.connector.dto.SubscriptionActionDTO;
 import uz.ucell.cpa.connector.dto.SubscriptionDTO;
+import uz.ucell.cpa.connector.model.UserSubscription;
 
 public interface SubscriptionService {
 
-    Flux<SubscriptionDTO> getSubscriptions(String msisdn);
+    Flux<UserSubscription> getSubscriptions(String msisdn);
     Mono<SubscriptionDTO> addSubscription(SubscriptionActionDTO actionDTO);
     Mono<Void> removeSubscription(SubscriptionActionDTO actionDTO);
     Mono<SubscriptionDTO> updateSubscription(SubscriptionDTO actionDTO);
