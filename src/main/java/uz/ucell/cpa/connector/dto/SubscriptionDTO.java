@@ -15,4 +15,6 @@ import java.util.UUID;
 public class SubscriptionDTO implements Serializable {
 
     UUID id;
+
+
 }

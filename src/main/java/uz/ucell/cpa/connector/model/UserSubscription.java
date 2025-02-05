@@ -12,6 +12,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -32,7 +33,6 @@ public class UserSubscription implements Serializable {
         this.actionId = actionId;
         this.state = state;
         this.langId = langId;
-        this.createdDate = Instant.now();
     }
 
     @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED,name = "msisdn",ordinal = 0)
@@ -49,10 +49,9 @@ public class UserSubscription implements Serializable {
 
     private Integer typeId;
 
-    @CreatedDate
-    @Column("created_date")
+    @Column("createddate")
     @PrimaryKeyColumn(type = PrimaryKeyType.CLUSTERED, ordinal = 3)
-    private Instant createdDate;
+    private LocalDateTime createdDate;
 
     @Column("langid")
     private Long langId;

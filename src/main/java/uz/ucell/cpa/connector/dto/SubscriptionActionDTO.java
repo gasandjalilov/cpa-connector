@@ -8,6 +8,8 @@ import java.io.Serializable;
 @Builder
 public record SubscriptionActionDTO (
         String msisdn,
-        Integer campaignId
+        Integer contentProviderId,
+        Integer serviceId,
+        String actionId
 ) implements Serializable {
 }

@@ -1,10 +1,17 @@
 spring:
   cassandra:
-    contact-points: 10.7.83.25:9042
+    contact-points: 10.7.83.25
     keyspace-name: vasp
     password: password
     username: cassandra
-    local-datacenter: dc1
+    local-datacenter: datacenter1
+    request:
+      timeout: 10s
+
 
   application:
     name: CPA-Connector
+  artemis:
+    broker-url: "tcp://10.7.83.27:61616"
+    user: amq-broker
+    password: mLzaczb2
