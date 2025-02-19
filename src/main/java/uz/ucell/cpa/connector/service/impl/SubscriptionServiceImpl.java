@@ -1,6 +1,7 @@
 package uz.ucell.cpa.connector.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,6 +16,8 @@ import uz.ucell.cpa.connector.service.SubscriptionService;
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     private final UserSubscriptionRepository userSubscriptionRepository;
+    private final JmsTemplate jmsTemplate;
+
 
     @Override
     public Flux<UserSubscription> getSubscriptions(String msisdn) {
@@ -22,8 +25,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public Mono<SubscriptionDTO> addSubscription(SubscriptionActionDTO actionDTO) {
-        return null;
+    public Mono<SubscriptionActionDTO> addSubscription(SubscriptionActionDTO actionDTO) {
+        return Mono.fromRunnable(() -> jmsTemplate.convertAndSend("smpp", actionDTO))
+                .then(Mono.just(actionDTO));
     }
 
     @Override
@@ -31,8 +35,5 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return null;
     }
 
-    @Override
-    public Mono<SubscriptionDTO> updateSubscription(SubscriptionDTO actionDTO) {
-        return null;
-    }
+
 }

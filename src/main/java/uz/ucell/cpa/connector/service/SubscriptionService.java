@@ -10,7 +10,6 @@ import uz.ucell.cpa.connector.model.UserSubscription;
 public interface SubscriptionService {
 
     Flux<UserSubscription> getSubscriptions(String msisdn);
-    Mono<SubscriptionDTO> addSubscription(SubscriptionActionDTO actionDTO);
+    Mono<SubscriptionActionDTO> addSubscription(SubscriptionActionDTO actionDTO);
     Mono<Void> removeSubscription(SubscriptionActionDTO actionDTO);
-    Mono<SubscriptionDTO> updateSubscription(SubscriptionDTO actionDTO);
 }
