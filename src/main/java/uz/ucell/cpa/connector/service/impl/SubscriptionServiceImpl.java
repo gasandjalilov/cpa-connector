@@ -7,7 +7,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uz.ucell.cpa.connector.dto.SubscriptionActionDTO;
 import uz.ucell.cpa.connector.dto.SubscriptionDTO;
+import uz.ucell.cpa.connector.model.ContentProvider;
 import uz.ucell.cpa.connector.model.UserSubscription;
+import uz.ucell.cpa.connector.repository.ContentProviderRepository;
 import uz.ucell.cpa.connector.repository.UserSubscriptionRepository;
 import uz.ucell.cpa.connector.service.SubscriptionService;
 
@@ -16,6 +18,7 @@ import uz.ucell.cpa.connector.service.SubscriptionService;
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     private final UserSubscriptionRepository userSubscriptionRepository;
+    private final ContentProviderRepository contentProviderRepository;
     private final JmsTemplate jmsTemplate;
 
 
@@ -33,6 +36,21 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public Mono<Void> removeSubscription(SubscriptionActionDTO actionDTO) {
         return null;
+    }
+
+    @Override
+    public Flux<ContentProvider> getProviders() {
+        return contentProviderRepository.findAll();
+    }
+
+    @Override
+    public Mono<ContentProvider> addProvider(ContentProvider contentProvider) {
+        return contentProviderRepository.save(contentProvider);
+    }
+
+    @Override
+    public Mono<Void> removeProvider(ContentProvider contentProvider) {
+        return contentProviderRepository.deleteByShortNumberAndActionId(contentProvider.getShortNumber(), contentProvider.getActionId());
     }
 
 

@@ -22,7 +22,7 @@ public class CampaignController {
     }
 
     @PostMapping("/subscription")
-    public Mono<SubscriptionDTO> createSubscription(@RequestBody SubscriptionActionDTO subscriptionDTO) {
+    public Mono<SubscriptionActionDTO> createSubscription(@RequestBody SubscriptionActionDTO subscriptionDTO) {
         return subscriptionService.addSubscription(subscriptionDTO);
     }
 
@@ -31,8 +31,5 @@ public class CampaignController {
         return subscriptionService.removeSubscription(subscriptionDTO);
     }
 
-    @PatchMapping("/subscription")
-    public Mono<SubscriptionDTO> updateSubscription(@RequestBody SubscriptionDTO subscriptionDTO) {
-        return subscriptionService.updateSubscription(subscriptionDTO);
-    }
+
 }

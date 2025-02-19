@@ -12,7 +12,7 @@ public interface ContentProviderRepository extends ReactiveCassandraRepository<C
 
 
     Mono<ContentProvider> findByShortNumberAndActionId(String cpId, String actionId);
-
+    Mono<Void> deleteByShortNumberAndActionId(String cpId, String actionId);
     @AllowFiltering
     Flux<ContentProvider> findByServiceId(Long serviceId);
     @AllowFiltering
